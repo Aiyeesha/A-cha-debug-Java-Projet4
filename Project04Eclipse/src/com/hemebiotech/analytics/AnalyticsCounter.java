@@ -15,13 +15,28 @@ import java.util.TreeMap;
 
 public class AnalyticsCounter {
 
+	
+ReadSymptomDataFromFile readSymptomDataFromFile = new ReadSymptomDataFromFile(null);
+	
+	/**
+	 * read symptoms in a file and create a list of symptoms 
+	 *
+	 * @param file
+	 * 
+	 * @return list of symptoms
+	 * 
+	 */
+	 
+	
 	/**
 	 * Browse the list, sort it alphabetically and count the occurrences
+	 *
 	 * @param symptoms list of symptoms
 	 * @return countSymptoms list of symptoms in a natural order and count the strings occurrences
 	 */
 
-	public Map<String, Integer> CountSymptoms(List<String> symptoms) {
+	
+	public Map<String, Integer> countSymptoms(List<String> symptoms) {
 
 		Map<String, Integer> countSymptoms = new TreeMap<>();
 
@@ -38,14 +53,17 @@ public class AnalyticsCounter {
 		return countSymptoms;
 	}
 
+	
+	
 	/**
 	 * Print the map in an external file
+	 *
 	 * @param countSymptoms list of symptoms in a natural order and count the strings occurrences
 	 * @param fileOut       creation of an external file
 	 * @throws IOException if the file is not created correctly
 	 */
 
-	public void PrintFile(Map<String, Integer> countSymptoms, File fileOut) throws IOException {
+	public void writeSymptomsFile(Map<String, Integer> countSymptoms, File fileOut) throws IOException {
 
 		BufferedWriter bf = new BufferedWriter(new FileWriter(fileOut));
 
@@ -62,7 +80,10 @@ public class AnalyticsCounter {
 		}
 
 
+
+
 		System.out.println("The file " + fileOut + " has been created");
 		System.out.println("Filepath: " + fileOut.getAbsolutePath());
 	}
 }
+	
