@@ -1,89 +1,40 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedWriter;
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
-/**
- * Browse the list, sort it alphabetically and count the occurrences
- * Print in external file
- */
 
 public class AnalyticsCounter {
+    private static int headacheCount = 0;
+    private static int rashCount = 0;
+    private static int pupilCount = 0;
 
-	
-ReadSymptomDataFromFile readSymptomDataFromFile = new ReadSymptomDataFromFile(null);
-	
-	/**
-	 * read symptoms in a file and create a list of symptoms 
-	 *
-	 * @param file
-	 * 
-	 * @return list of symptoms
-	 * 
-	 */
-	 
-	
-	/**
-	 * Browse the list, sort it alphabetically and count the occurrences
-	 *
-	 * @param symptoms list of symptoms
-	 * @return countSymptoms list of symptoms in a natural order and count the strings occurrences
-	 */
+    public static void main(String args[]) throws Exception {
 
-	
-	public Map<String, Integer> countSymptoms(List<String> symptoms) {
+        BufferedReader reader = new BufferedReader(new FileReader("symptoms.txt"));
+        String line = reader.readLine();
 
-		Map<String, Integer> countSymptoms = new TreeMap<>();
+        int i = 0;
 
-		try {
-			for (String symptom : symptoms) {
-				countSymptoms.merge(symptom, 1, Integer::sum);
-			}
-			System.out.println("The symptoms.txt file was analyzed correctly");
-	}
-		catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Cause : " + e.getCause());
-		}
-		return countSymptoms;
-	}
+        while (line != null) {
+            i++;
+            System.out.println("symptom from file: " + line);
+            if (line.equals("headache")) {
+                headacheCount++;
+                System.out.println("number of headaches: " + headacheCount);
+            } else if (line.equals("rash")) {
+                rashCount++;
+            } else if (line.contains("pupils")) {
+                pupilCount++;
+            }
 
-	
-	
-	/**
-	 * Print the map in an external file
-	 *
-	 * @param countSymptoms list of symptoms in a natural order and count the strings occurrences
-	 * @param fileOut       creation of an external file
-	 * @throws IOException if the file is not created correctly
-	 */
+            line = reader.readLine();
+        }
 
-	public void writeSymptomsFile(Map<String, Integer> countSymptoms, File fileOut) throws IOException {
-
-		BufferedWriter bf = new BufferedWriter(new FileWriter(fileOut));
-
-		try {
-			for (@SuppressWarnings("rawtypes") Map.Entry entry : countSymptoms.entrySet()) {
-				bf.write(entry.getKey() + " : " + entry.getValue() + System.getProperty("line.separator"));
-			}
-			bf.close();
-		}
-		catch (Exception e){
-			e.printStackTrace();
-			System.out.println("Cause : " + e.getCause());
-			System.out.println("Message : " + e.getMessage());
-		}
-
-
-
-
-		System.out.println("The file " + fileOut + " has been created");
-		System.out.println("Filepath: " + fileOut.getAbsolutePath());
-	}
+        FileWriter writer = new FileWriter("result.out");
+        writer.write("headache: " + headacheCount + "\n");
+        writer.write("rash: " + rashCount + "\n");
+        writer.write("dialated pupils: " + pupilCount + "\n");
+        writer.close();
+    }
 }
-	
