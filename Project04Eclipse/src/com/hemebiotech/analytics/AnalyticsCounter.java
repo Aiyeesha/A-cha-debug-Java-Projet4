@@ -17,12 +17,16 @@ public class AnalyticsCounter {
 
 	/**
 	 * Browse the list, sort it alphabetically and count the occurrences
-	 *
+	 * Read symptoms in a file and create a list of symptoms 
 	 * @param symptoms list of symptoms
 	 * @return countSymptoms list of symptoms in a natural order and count the strings occurrences
 	 */
-
-	public Map<String, Integer> CountSymptoms(List<String> symptoms) {
+	
+	
+	 ReadSymptomDataFromFile readSymptomDataFromFile = new ReadSymptomDataFromFile(new File("Project04Eclipse/Ressources/Symptoms.txt"));
+	
+	
+	public Map<String, Integer> countSymptoms(List<String> symptoms) {
 
 		Map<String, Integer> countSymptoms = new TreeMap<>();
 
@@ -39,15 +43,16 @@ public class AnalyticsCounter {
 		return countSymptoms;
 	}
 
+	
+	
 	/**
-	 * Print the map in an external file
-	 *
+	 * Write the map in an external file
 	 * @param countSymptoms list of symptoms in a natural order and count the strings occurrences
 	 * @param fileOut       creation of an external file
 	 * @throws IOException if the file is not created correctly
 	 */
 
-	public void PrintFile(Map<String, Integer> countSymptoms, File fileOut) throws IOException {
+	public void writeResults(Map<String, Integer> countSymptoms, File fileOut) throws IOException {
 
 		BufferedWriter bf = new BufferedWriter(new FileWriter(fileOut));
 
@@ -70,3 +75,4 @@ public class AnalyticsCounter {
 		System.out.println("Filepath: " + fileOut.getAbsolutePath());
 	}
 }
+	
