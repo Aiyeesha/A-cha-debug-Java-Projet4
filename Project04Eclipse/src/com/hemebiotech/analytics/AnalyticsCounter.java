@@ -48,11 +48,11 @@ public class AnalyticsCounter {
 	/**
 	 * Write the map in an external file
 	 * @param countSymptoms list of symptoms in a natural order and count the strings occurrences
-	 * @param fileOut       creation of an external file
+	 * @param fileOut creation of an external file
 	 * @throws IOException if the file is not created correctly
 	 */
 
-	public void writeResults(Map<String, Integer> countSymptoms, File fileOut) throws IOException {
+	public void writeSymptoms(Map<String, Integer> countSymptoms, File fileOut) throws IOException {
 
 		BufferedWriter bf = new BufferedWriter(new FileWriter(fileOut));
 
