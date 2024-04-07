@@ -7,7 +7,6 @@ import java.util.Map;
 
 /**
  * Simple implementation writing in a file.
- *
  * @param ISymptomReader implémente l'interface
  * @return
  */
@@ -15,13 +14,13 @@ import java.util.Map;
 public class WriteSymptomDataToFile implements ISymptomWriter {
 
   /**
-   * Write the result in the result.out file.
-   *
+   * Write the result in the Result.out file.
    * @param symptoms the map containing the sorted symptoms and their count
    * @return
    */
-  public void writeSymptoms(Map<String, Integer> symptoms) {
-    try (FileWriter writer = new FileWriter(new File("result.out"))) {
+  @Override
+public void writeSymptoms(Map<String, Integer> symptoms) {
+    try (FileWriter writer = new FileWriter(new File("Results.out"))) {
       for (String symptom : symptoms.keySet()) {
         writer.write(symptom + " : " + symptoms.get(symptom) + "\n");
       }
