@@ -33,7 +33,7 @@ public class Main {
         Print result in the results.out file
          */
         File fileOut = new File("Results.out");
-        analyticsCounter.writeResults(countSymptoms, fileOut);
+        analyticsCounter.writeSymptoms(countSymptoms, fileOut);
 
     }
 
