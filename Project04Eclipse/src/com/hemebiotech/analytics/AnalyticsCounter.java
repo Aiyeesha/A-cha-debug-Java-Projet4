@@ -52,7 +52,7 @@ public class AnalyticsCounter {
 	 * @throws IOException if the file is not created correctly
 	 */
 
-	public void writeResults(Map<String, Integer> countSymptoms, File fileOut) throws IOException {
+	public void writeSymptoms(Map<String, Integer> countSymptoms, File fileOut) throws IOException {
 
 		BufferedWriter bf = new BufferedWriter(new FileWriter(fileOut));
 
